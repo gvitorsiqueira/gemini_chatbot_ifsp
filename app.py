@@ -38,7 +38,7 @@ Histórico da Conversa:
 
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=google_api_key)
-genai.GenerationConfig(temperature=0.2) 
+genai.GenerationConfig(temperature=1) 
 
 # Variável global para o histórico da conversa
 conversation_history = ""
