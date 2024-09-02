@@ -11,20 +11,20 @@ st.set_page_config(page_title="💬 IFSP Chatbot")
 
 CHROMA_PATH = "chroma"
 PROMPT_TEMPLATE = """
-Responda a questão apenas com base no contexto abaixo:
+O texto a seguir é um extrato do edital contendo informações sobre o processo seletivo dos cursos Técnicos e Técnicos integrados ao ensino médio do IFSP:
 
 {context}
 
 ---
-Caso você não tenha a resposta, você deve dizer que não possui informações sobre este assunto.
-Se houver uma errata ou retificação, você deve considerar a informação da errata e desconsiderar a informação original do edital.
+É crucial que você encontre a resposta dentro do texto fornecido. Sua resposta deve ser baseada exclusivamente nas informações presentes no contexto acima.
+Priorize informações de erratas ou retificações em relação a informações anteriores no contexto.
 Responda a questão com base no contexto acima: {question}
 
 **Por favor, formate sua resposta usando Markdown.**
 """
 google_api_key=st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=google_api_key)
-
+genai.GenerationConfig(temperature=0.5)
 
 def generate_response(input_text):
     model = genai.GenerativeModel('gemini-1.5-flash')
