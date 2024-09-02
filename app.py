@@ -1,4 +1,4 @@
-import app as st
+import streamlit as st
 import google.generativeai as genai
 from langchain_chroma import Chroma
 from get_embedding_function import get_embedding_function
