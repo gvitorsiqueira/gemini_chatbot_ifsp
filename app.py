@@ -24,7 +24,7 @@ Responda a questão com base no contexto acima: {question}
 """
 google_api_key=st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=google_api_key)
-genai.GenerationConfig(temperature=0.5)
+genai.GenerationConfig(temperature=1)
 
 def generate_response(input_text):
     model = genai.GenerativeModel('gemini-1.5-flash')
