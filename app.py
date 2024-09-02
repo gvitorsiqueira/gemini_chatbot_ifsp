@@ -19,7 +19,7 @@ Responda a questão com base no contexto acima: {question}
 
 **Por favor, formate sua resposta usando Markdown.**
 """
-google_api_key="GOOGLE_API_KEY"
+google_api_key=st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=google_api_key)
 
 
