@@ -61,9 +61,9 @@ def generate_response(prompt_input):
     # Prepara o prompt com o histórico da conversa
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     input = prompt_template.format(context=context_text, question=prompt_input, conversation_history=conversation_history)
-
+    temperature = 0.2
     # Gera a resposta
-    output = model.generate_content(input, temperature = 0.2)
+    output = model.generate_content(input, temperature)
 
     # Extrai a resposta
     full_response = ''
