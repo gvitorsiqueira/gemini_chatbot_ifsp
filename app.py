@@ -38,7 +38,7 @@ Histórico da Conversa:
 
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=google_api_key)
-#genai.GenerationConfig(temperature=0.5) #ajuste a temperatura aqui
+genai.GenerationConfig(temperature=0.2) 
 
 # Variável global para o histórico da conversa
 conversation_history = ""
@@ -61,9 +61,8 @@ def generate_response(prompt_input):
     # Prepara o prompt com o histórico da conversa
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     input = prompt_template.format(context=context_text, question=prompt_input, conversation_history=conversation_history)
-    temperature = 0.2
     # Gera a resposta
-    output = model.generate_content(input, temperature)
+    output = model.generate_content(input)
 
     # Extrai a resposta
     full_response = ''
