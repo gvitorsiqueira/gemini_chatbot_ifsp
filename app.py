@@ -12,7 +12,7 @@ st.set_page_config(page_title="💬 IFSP Chatbot")
 
 CHROMA_PATH = "chroma"
 PROMPT_TEMPLATE = """
-O texto a seguir é um extrato do edital contendo informações sobre o processo seletivo dos cursos Técnicos e Técnicos integrados ao ensino médio do IFSP:
+O texto a seguir é um extrato do edital contendo informações sobre o processo seletivo dos cursos Técnicos e Técnicos integrados ao ensino médio do IFSP.  Estamos conversando sobre as vagas e o conteúdo programático dos cursos em diferentes campi.
 
 {context}
 
@@ -20,6 +20,15 @@ O texto a seguir é um extrato do edital contendo informações sobre o processo
 É crucial que você encontre a resposta dentro do texto fornecido. Sua resposta deve ser baseada exclusivamente nas informações presentes no contexto acima.
 Priorize informações de erratas ou retificações em relação a informações anteriores no contexto.
 Responda a questão com base no contexto acima: {question}
+
+**Exemplos de Perguntas Sinônimas:**
+
+* O que vai cair na prova?
+* Quais as matérias que devo estudar?
+* Qual o conteúdo programático?
+Outros sinônimos:
+* Quais as vagas?
+* Quantas vagas tem?
 
 **Por favor, formate sua resposta usando Markdown.**
 
@@ -29,7 +38,7 @@ Histórico da Conversa:
 
 google_api_key = st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=google_api_key)
-#genai.GenerationConfig(temperature=0.5) #ajuste a temperatura aqui
+genai.GenerationConfig(temperature=1) 
 
 # Variável global para o histórico da conversa
 conversation_history = ""
@@ -52,7 +61,6 @@ def generate_response(prompt_input):
     # Prepara o prompt com o histórico da conversa
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     input = prompt_template.format(context=context_text, question=prompt_input, conversation_history=conversation_history)
-
     # Gera a resposta
     output = model.generate_content(input)
 
