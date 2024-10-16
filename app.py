@@ -46,7 +46,7 @@ def generate_response(prompt_input):
     conversation_history += f"User: {prompt_input}\n"
 
     # Search the DB.
-    results = db.similarity_search_with_score(conversation_history, k=5)
+    results = db.similarity_search_with_score(prompt_input, k=5)
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
 
     # Prepara o prompt com o histórico da conversa
